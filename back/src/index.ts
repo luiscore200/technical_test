@@ -12,7 +12,7 @@ app.use(cors());
 
 app.use(express.json());
 app.get('/', (req, res) => {
-  res.send('Bienvenido a la API de compañías 🚀');
+  res.send('Bienvenido a la API de compañías');
 });
 app.use('/api', apiRoutes);
 
