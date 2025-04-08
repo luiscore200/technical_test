@@ -17,7 +17,7 @@ router.post('/companies', validateWithZod(companySchema), companyController.crea
 
 router.get('/companies', companyController.getCompanies);
 router.get('/companies/:id', companyController.getCompanyById);
-router.put('/companies/:id', companyController.updateCompany); // puedes agregar Zod aquí también si lo necesitas
+router.put('/companies/:id', companyController.updateCompany);
 router.delete('/companies/:id', companyController.deleteCompany);
 
 // Creator routes
