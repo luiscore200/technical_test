@@ -1,17 +1,22 @@
 import { Router } from 'express';
+import { validateWithZod } from '../middlewares/zodValidation';
+
+
 
 // Controllers
 import * as companyController from '../controllers/companyController';
 import * as creatorController from '../controllers/creatorController';
 import * as contentRequestController from '../controllers/contentRequestController';
+import { companySchema } from '../validators/companySchema';
 
 const router = Router();
 
 // Company routes
-router.get('/companies', companyController.getAllCompanies);
-router.get('/companies/:id', companyController.getCompany);
-router.post('/companies', companyController.createCompany);
-router.put('/companies/:id', companyController.updateCompany);
+router.post('/companies', validateWithZod(companySchema), companyController.createCompany);
+
+router.get('/companies', companyController.getCompanies);
+router.get('/companies/:id', companyController.getCompanyById);
+router.put('/companies/:id', companyController.updateCompany); // puedes agregar Zod aquí también si lo necesitas
 router.delete('/companies/:id', companyController.deleteCompany);
 
 // Creator routes
