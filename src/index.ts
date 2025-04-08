@@ -1,14 +1,15 @@
 import express from 'express';
-import companyRoutes from './routes/company';
-import creatorRoutes from './routes/creator';
-import contentRequestRoutes from './routes/contentRequest';
+import apiRoutes from './routes/api';
+const cors = require('cors');
 
 const app = express();
 
+
+app.use(cors());
+
 app.use(express.json());
-app.use('/api', companyRoutes);
-app.use('/api', creatorRoutes);
-app.use('/api', contentRequestRoutes);
+app.use('/api', apiRoutes);
+
 
 const PORT = Number(process.env.PORT) || 3000;
 
