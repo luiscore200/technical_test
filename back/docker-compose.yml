@@ -6,11 +6,8 @@ services:
     ports:
       - "4000:4000"
     volumes:
-       - ./src:/app/src
-       - ./package.json:/app/package.json
-       - ./tsconfig.json:/app/tsconfig.json
-       - ./nodemon.json:/app/nodemon.json
-       - /app/node_modules
+      - .:/app
+      - /app/node_modules # evitar conflicto con node_modules del host
     environment:
       - NODE_ENV=development
       - DOTENV_CONFIG_PATH=/app/.env
