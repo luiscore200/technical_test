@@ -1,0 +1,34 @@
+services:
+  backend:
+    build:
+      context: .
+    container_name: backend-app
+    ports:
+      - "4000:4000"
+    volumes:
+       - ./src:/app/src
+       - ./package.json:/app/package.json
+       - ./tsconfig.json:/app/tsconfig.json
+       - ./nodemon.json:/app/nodemon.json
+       - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - DOTENV_CONFIG_PATH=/app/.env
+    command: npm run dev
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:15
+    container_name: back-postgres-1
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: tolisto
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
